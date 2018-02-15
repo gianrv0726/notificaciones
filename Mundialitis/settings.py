@@ -29,7 +29,7 @@ DEBUG = True
 #Local
 #ALLOWED_HOSTS = []
 #Heroku
-ALLOWED_HOSTS = ['127.0.0.1','localhost','mundialitis.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','notificacionesapp.herokuapp.com']
 
 
 # Application definition
