@@ -4,7 +4,7 @@
 <title>Invitar</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static '/css/perfil.css' %}">
+<link rel="stylesheet" href="{% static 'mundialitisapps/css/stylelogin.css' %}" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,21 +17,6 @@ body {font-size:16px;}
 </style>
 <body>
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-  <div class="w3-container">
-                                                                                                                                                                                                                                                                                                                                                                                              <h3 class="w3-padding-64"><b>Bienvenido<br>{{ user.get_username }}</b></h3>
-  </div>
-  <div class="w3-bar-block">
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
-    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Grupos</a>
-    <a href="#equipoIdeal" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Equipo Ideal</a>
-    <a href="#polla" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Polla</a>
-    <a href="#trivia" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Trivia</a>
-    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Desconectarse</a>
-  </div>
-</nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
@@ -43,7 +28,7 @@ body {font-size:16px;}
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
+<div class="w3-main" style="margin-left:320px;margin-right:320px">
 <!-- Home -->
 <!--
   <div class="w3-container" style="margin-top:80px" id="showcase">
@@ -53,7 +38,7 @@ body {font-size:16px;}
   </div>
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
-    <h1 class="w3-jumbo">{{ user.get_username }} invita a alguien a tu lobby</h1>
+    <h1 class="w3-jumbo">{{ users}} invita a alguien a tu lobby</h1>
     <hr>
   </div>
 
@@ -83,120 +68,21 @@ body {font-size:16px;}
 <br>
 
 
-<!-- hasta aqui la invitacion, lo de abajo no vale -->
-
-<!--
-<p>Notificaciones<p>
-<table>
-  <ul>
-{% for i in Invitaciones %}
-
-<tr><td><li>Grupo: {{i}}
-<td>   <form action = "../responderinvitacion/" method = "post">
-   {% csrf_token %}
-   <input type="hidden" name="grupo" value="{{i}}">
-   <input type="hidden" name="rpta" value="aceptado">
-        <input type="submit" name="upvote" value="Aceptar" />
-    </form></td>
-    <td>  <form action = "../responderinvitacion/" method = "post">
-             {% csrf_token %}
-             <input type="hidden" name="grupo" value="{{i}}">
-             <input type="hidden" name="rpta" value="rechazado">
-        <input type="submit" name="upvote" value="Rechazar" />
-
-    </form></td></li></td></tr>
-
-{% endfor %}
-</ul>
-</table>
 
 
     </div>
   </div>
-    <div class="w3-half">
-      <form method="post" action='../agregargrupo/' >
-         {% csrf_token %}
-    <label>Nombre de grupo</label>
-    <input type="text" size=15 name="nombregrupo" id="nombregrupo" maxlength="25" onkeyup="nospaces(this)" required="">
-    <br><br>
-    <button type="submit" class="button button-block " name='submit' value="signup"/>Crear Grupo</button>
-    </form>
-    <br>
-    <p> Tus grupos</p>
-    <form method="post" action='/perfil/' >
-      {% csrf_token %}
-    <select name="sometext" id='sometext' >
-      {% for x in misgrupos %}
-        <option>{{x}}</option>
-              {% endfor %}</select>
-  <button type="submit" class="button button-block " name='submit' value="Consultar"/>Consultar miembros</button>
-  </form>
 
--->
-<!-- Mostrar usuarios del grupo en formato lista-->
-<!--
-  <ul>
-    {% for f in listausuarios %}
-      <li>{{f}}</li>
-    {% endfor %}
-  </ul>
+
+
+
 
     </div>
-
--->
-  <!-- Modal for full size images on click-->
-  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-    <span class="w3-button w3-black w3-xxlarge w3-display-topright">&times;</span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-      <img id="img01" class="w3-image">
-      <p id="caption"></p>
-    </div>
-  </div>
-<div style='margin-bottom: 1px;'><br></div>
-
-  <!-- Equipo Ideal -->
-<!--
-  <div class="w3-container" id="equipoIdeal" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Equipo Ideal</b></h1>
-    <hr>
-    <img src="http://www.elclasicofutbol5.com/wp-content/uploads/2015/06/cancha-dimensiones-futbol.jpg" width="400" height="400">
-    <br><br>
-    <button class="button button-block"/>Jugar</button>
-  </div>
-
-  <!-- Polla -->
-<!--
-  <div class="w3-container" id="polla" style="margin-top:75px" >
-    <h1 class="w3-xxxlarge w3-text-red"><b>Polla</b></h1>
-    <hr>
-    <img src="https://www.oscfondesarrollo.com/pollaeliminatorias/resources/img/laptop-futbol-apuestas.png" width="650" height="400">
-    <br><br>
-    <button class="button button-block"/>Jugar</button>
-  </div>
-
-  <!-- The Team -->
-  <!--
-  <div class="w3-row-padding w3-grayscale">
-
-  </div>
-
-  <!-- Packages / Pricing Tables -->
-  <!--
-  <div class="w3-container" id="trivia" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Trivia</b></h1>
-    <hr>
-    <img src="https://thumbs.dreamstime.com/b/signo-de-interrogaci%C3%B3n-de-bolas-del-balompi%C3%A9-del-f%C3%BAtbol-24535862.jpg" width="400" height="400"><br><br>
-
-    <button class="button button-block" onclick="location.href='../trivia/'"> Jugar</button>
-
-
-  </div>
+</div>
 
 
 
 
-
-<!-- End page content -->
 
 
 <!-- W3.CSS Container -->

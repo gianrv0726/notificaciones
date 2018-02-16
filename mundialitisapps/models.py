@@ -52,9 +52,3 @@ class Invitacion(models.Model):
     #estados rechazado y aceptado
     def __str__(self):
         return (invitado)
-
-class grupo(models.Model):
-    nombre = models.CharField(max_length=30,unique=True)
-    owner=models.CharField(max_length=30)
-    def __str__(self):
-        return "%s" % (self.nombre)

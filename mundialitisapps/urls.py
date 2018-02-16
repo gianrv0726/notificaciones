@@ -25,6 +25,8 @@ urlpatterns = [
     #invitaciones
     url(r'^invitar/', views.invitar, name='invitar'),
     url(r'^perfil/', views.perfil, name='perfil'),
+    
+    url(r'^perfil1/', views.perfil1, name='perfil1'),
     url(r'^invitarusuario/', views.invitarusuario, name='invitarusuario'),
     url(r'^agregargrupo/', views.agregargrupo, name='agregargrupo'),
     url(r'^responderinvitacion/', views.responderinvitacion, name='responderinvitacion'),
